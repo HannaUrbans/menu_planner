@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Планировщик меню</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=LXGW+WenKai+TC&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="layout_page">
+    <!-- Блок шапки -->
+    <header>
+        <div th:replace="common/header :: header" class="main-menu"></div>
+    </header>
+    <!-- Основной блок -->
+    <div th:replace="${content} :: main-content" class = "main-block"></div>
+    <!-- Блок футера -->
+    <footer class = "footer">
+
+    </footer>
+</div>
+
+</body>
+</html>

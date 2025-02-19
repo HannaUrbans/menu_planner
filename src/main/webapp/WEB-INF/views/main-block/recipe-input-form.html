@@ -1,0 +1,36 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="main-content" class="recipe-form-block">
+    <form th:action="@{/createOrUpdateRecipe}" th:object="${recipe}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+
+        <h2>Сохранить рецепт</h2>
+
+        <label for="name">Название рецепта</label>
+        <input type="text" th:field="*{name}" id="name" name="name"/>
+
+        <label for="category">Категория</label>
+        <select th:field="*{mealCategory}" id="category" name="category">
+            <option
+                    th:each="tmp : ${T(by.urbans.springproject.enums.MealCategory).values()}"
+                    th:value="${tmp}"
+                    th:text="${tmp.categoryName}">
+            </option>
+        </select>
+
+
+        <label for="caloricValue">Калорийность</label>
+        <input type="number" th:field="*{caloricValue}" id="caloricValue" name="caloricValue"/>
+
+
+        <label for="ingredients">Ингредиенты</label>
+        <textarea th:field="*{ingredients}" id="ingredients" name="ingredients"></textarea>
+
+
+        <label for="description">Описание</label>
+        <textarea th:field="*{description}" id="description" name="description"></textarea>
+
+
+        <button type="submit">Сохранить</button>
+
+    </form>
+    <a th:href="@{/goToGetRecipePage}">Вернуться к списку рецептов</a>
+</div>

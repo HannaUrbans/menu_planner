@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма регистрации</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=LXGW+WenKai+TC&display=swap"
+          rel="stylesheet">
+</head>
+<body id = "reg-form">
+<div class="form-page">
+    <div class="form-to-fill-in">
+        <div>
+            <form th:action="@{doReg}" th:object="${user}" method="post">
+                <h2>Для регистрации заполните данные поля:</h2>
+                <p>* отмечены поля, обязательные для ввода</p>
+                <div th:if="${errors != null}">
+                    <ul>
+                        <li th:each="error : ${errors}" th:text="${error.defaultMessage}"></li>
+                    </ul>
+                </div>
+                <label for="login">
+                    Логин*:
+                </label>
+                <br>
+                <input type="text" th:field="*{login}" id="login" name="login" required="required"/>
+                <br>
+                <label for="password">
+                    Пароль*:
+                </label>
+                <br>
+                <input type="text" th:field="*{password}" id="password" name="password" required="required"/>
+                <br>
+                <label for="phone">
+                    Телефон:
+                </label>
+                <br>
+                <input type="text" th:field="*{phone}" id="phone" name="phone" placeholder="+375291111111"/>
+                <br><br>
+                <input type="submit" value="Зарегистрироваться">
+            </form>
+        </div>
+        <div class="form-a">
+            <a th:href="@{/goToAuthPage}">Авторизоваться</a>
+            <br>
+            <a class="additional-go-to-main-page-a" th:href="@{/goToMainPage}">На главную</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

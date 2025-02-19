@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Форма авторизации</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=LXGW+WenKai+TC&display=swap"
+          rel="stylesheet">
+</head>
+<body id = "auth-form">
+<div class="form-page">
+    <div class="form-to-fill-in">
+        <div>
+            <form th:action="@{/doAuth}" th:object="${auth}" method="post">
+
+                <h2>Для входа в личный кабинет пройдите авторизацию:</h2>
+                <label for="login">
+                    Введите логин:
+                </label>
+                <br>
+                <input type="text" th:field="*{login}" id="login" name = "login"/>
+                <br><br>
+
+                <label for="password">Введите пароль:</label>
+                <br>
+                <input type="password" th:field="*{password}" id="password" name = "password"/>
+                <br>
+                <input type="submit" value="Войти"/>
+            </form>
+        </div>
+        <div class="form-a">
+            <a th:href="@{/goToRegPage}">Зарегистрироваться</a>
+            <br>
+            <a class="additional-go-to-main-page-a" th:href="@{/goToMainPage}">На главную</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

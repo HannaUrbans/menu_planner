@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+       		http://www.springframework.org/schema/beans
+           	http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/mvc
+            http://www.springframework.org/schema/mvc/spring-mvc.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- Включает автоматическое сканирование компонентов в указанном пакете -->
+    <context:component-scan base-package="by.urbans.springproject"/>
+
+    <!-- Включает поддержку аннотаций @RequestMapping, @Controller и других Spring MVC -->
+    <mvc:annotation-driven/>
+    <!-- Определяет пути к статическим ресурсам, что позволяет Spring MVC обрабатывать запросы к ним -->
+    <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/images/**" location="/images/"/>
+
+    <!-- Настраивает, где лежат HTML-файлы -->
+    <bean id="templateResolver" class="org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".html"/>
+        <property name="characterEncoding" value="UTF-8"/>
+    </bean>
+
+    <!-- Берет templateResolver и подключает движок Thymeleaf -->
+    <bean id="templateEngine" class="org.thymeleaf.spring6.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver"/>
+        <!-- включает поддержку Spring Expression Language (SpEL) -->
+        <property name="enableSpringELCompiler" value="true"/>
+    </bean>
+
+    <!--  Берет templateEngine и говорит Spring'у, что Thymeleaf отвечает за отображение страниц -->
+    <bean class="org.thymeleaf.spring6.view.ThymeleafViewResolver">
+        <property name="templateEngine" ref="templateEngine"/>
+        <property name="characterEncoding" value="UTF-8"/>
+        <property name="order" value="1"/>
+        <property name="viewNames" value="*"/>
+    </bean>
+
+    <!-- Подключаем к бд с использованием пула соединений c3p0 -->
+    <bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="jdbcUrl"
+                  value="jdbc:mysql://localhost:3306/menu_planner_management?allowPublicKeyRetrieval=true&amp;useSSL=false"/>
+        <property name="user" value="root"/>
+        <property name="password" value="1234"/>
+        <property name="minPoolSize" value="5"/>
+        <property name="maxPoolSize" value="20"/>
+        <property name="maxIdleTime" value="30000"/>
+    </bean>
+
+    <!-- Подключаем к бд с использованием пула соединений Хикари -->
+    <!--
+    <bean id="myDataSource" class="com.zaxxer.hikari.HikariDataSource">
+        // было driverClass
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="jdbcUrl"
+                  value="jdbc:mysql://localhost:3306/menu_planner_management?allowPublicKeyRetrieval=true&amp;useSSL=false"/>
+        <property name="username" value="root"/>
+        <property name="password" value="1234"/>
+         // было minPoolSize
+        <property name="minimumIdle" value="5"/>
+        // было maxPoolSize
+        <property name="maximumPoolSize" value="20"/>
+        // было maxIdleTime
+        <property name="idleTimeout" value="30000"/>
+        // можно было установить в c3p0 как <property name="checkoutTimeout" value="30000"/>
+        <property name="connectionTimeout" value="30000"/>
+    </bean>
+
+    -->
+
+    <!-- Настраиваем фабрику сессий -->
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="myDataSource"/>
+        <property name="packagesToScan" value="by.urbans.springproject.bean"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">create-drop</prop> <!-- Удалить созданное руками в гуи, создать на основе сущностей -->
+            </props>
+        </property>
+    </bean>
+
+    <!-- Настраиваем управление транзакциями через спринг -->
+    <bean id="myTransactionManager"
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- Включаем аннотации для управления транзакциями -->
+    <tx:annotation-driven transaction-manager="myTransactionManager"/>
+
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+
+    <bean id="webBindingInitializer" class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+        <property name="validator" ref="validator"/>
+    </bean>
+
+    <bean id="requestMappingHandlerAdapter"
+          class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="webBindingInitializer" ref="webBindingInitializer"/>
+    </bean>
+
+</beans>
+

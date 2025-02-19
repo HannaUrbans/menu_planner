@@ -1,0 +1,432 @@
+/* Устанавливаем фон для body */
+body {
+    margin: 0 auto; /* центрируем body */
+    background-size: 50% auto;
+    background-position: right;
+    background-repeat: no-repeat; /* не повторять изображение */
+    /*padding: 20px; /* отступы для body */
+    box-sizing: border-box;
+    height: 100vh;
+}
+
+.display-flex-main-page button {
+    font-family: "LXGW WenKai TC", serif;
+    font-size: 20px;
+    /* font-family: 'Courier New', monospace;*/
+}
+
+#main-page {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-image: url('../images/back.jpg'); /* фон для body */
+}
+
+.layout_page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+}
+
+.main-menu ul {
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+    margin-inline-end: 15px;
+}
+
+.main-menu li {
+    width: 400px;
+    float: left;
+    border-radius: 8px;
+
+}
+
+.main-menu a {
+    display: block;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #bdcbd4;
+    color: black;
+    text-decoration: none;
+    font-family: "Alumni Sans Pinstripe", serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.main-menu span {
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    padding: 15px;
+    background-color: #bdcbd4;
+    color: black;
+    text-decoration: none;
+    font-family: "Alumni Sans Pinstripe", serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.main-menu li a:hover {
+    transform: scale(1.1);
+}
+
+/* Скрытие выпадающего контента */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    /*background-color: #333;*/
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    padding: 12px 16px;
+}
+
+/* Показать меню при наведении */
+.main-menu:hover .dropdown-content {
+    display: block;
+}
+
+.header-nav-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100vw;
+}
+
+.main-menu {
+    display: contents;
+    width: 50vw;
+    margin-top: 15px;
+}
+
+.menu-button img{
+    height: 70px;
+    margin: 10px;
+}
+
+.menu-button img:hover{
+    transform: scale(1.1);
+}
+
+#auth-form{
+    background-image: url('../images/circle-back.png'), url('../images/rect-back.png');
+    background-position-x: 350px, 500px;
+    background-position-y: 100px;
+    background-size: 700px;
+}
+
+#reg-form{
+    background-image: url('../images/circle-back2.png');
+    background-position-x: 350px;
+    background-position-y: 100px;
+    background-size: 700px;
+}
+
+.auth-reg-button a {
+    text-decoration: none;
+}
+
+.auth-reg-button button {
+    height: 60px;
+    background-color: whitesmoke;
+    width: auto;
+    margin: 15px;
+    font-size: 20px;
+    /*font-family: "LXGW WenKai TC", serif;*/
+    font-family: "Alumni Sans Pinstripe", serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.auth-reg-button button:hover {
+    color: black;
+    background-color: whitesmoke;
+    transform: scale(1.1);
+}
+
+.form-a .additional-go-to-main-page-a{
+    color:black;
+    font-size: 18px;
+}
+
+.button-icon {
+    vertical-align: sub;
+    height: 35px;
+}
+
+#profile-page {
+    background-image: url('../images/back.jpg');
+    background-repeat: repeat;
+    background-position: top;
+    background-size: cover;
+}
+
+.form-page {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Легкая тень для формы */
+    border-radius: 8px; /* Скругленные углы */
+    gap: 0;
+    width: 560px;
+    margin: 25px auto 0;
+    /*background-image: url('../images/note.png');*/
+    background-size: cover;
+    background-position: top;
+}
+
+h2 {
+    font-family: "Alumni Sans Pinstripe", serif;
+    font-size: 24px;
+    color:cornflowerblue;
+}
+
+.short-description{
+    color: #C0C0C0;
+    font-size: 36px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.form-a {
+    margin-bottom: 20px;
+}
+
+.displayFlex {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Легкая тень для формы */
+    border-radius: 8px; /* Скругленные углы */
+    gap: 0;
+    width: 560px;
+    margin: 0 auto;
+}
+
+.display-flex-main-page {
+    display: flex;
+}
+
+.display-flex-main-page form {
+    width: 200px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Легкая тень для формы */
+    border-radius: 8px; /* Скругленные углы */
+}
+
+/* Центрируем форму на странице */
+form, .centerBlock {
+    margin: 5px;
+    width: 100%;
+    padding: 20px; /* Отступы внутри формы */
+}
+
+.centerBlock {
+    background-color: white; /* Белый фон для формы */
+    border-radius: 8px; /* Скругленные углы */
+    margin: 20px auto;
+    padding: 10px;
+    width: 90%;
+    text-align: center;
+
+}
+
+/* Дополнительные стили для формы (по желанию) */
+input, textarea, button {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="text"], input[type="password"], select {
+    width: 50%;
+}
+
+input[type="submit"], button {
+    background-color: #bdcbd4;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover, button:hover {
+    background-color: #bdcbd4;
+}
+
+input[type="checkbox"] {
+
+}
+
+button {
+    width: 200px; /* Ширина кнопки */
+    height: 40px; /* Высота кнопки, можно подкорректировать */
+    border: none; /* Убираем стандартную обводку */
+    border-radius: 5px; /* Скругленные углы (по желанию) */
+    text-align: center; /* Центрируем текст */
+    font-size: 16px; /* Размер шрифта */
+    display: block; /* Делаем кнопки блочными для центрирования */
+    margin: 0 auto; /* Центрируем кнопки */
+    cursor: pointer;
+}
+
+.display-flex-main-page button {
+    background-color: white;
+    color: black;
+    width: auto;
+}
+
+.displayFlex button {
+    background-color: white;
+    color: #bdcbd4;
+    font-weight: bold;
+    width: auto;
+}
+
+button:hover {
+    color: cornflowerblue;
+}
+
+.form-to-fill-in {
+    height: fit-content;
+    font-size: 14px;
+    width: 90%;
+    font-family: "LXGW WenKai TC", serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-to-fill-in a, .recipe-form-block a {
+    text-decoration: none;
+    font-family: "Alumni Sans Pinstripe", serif;
+    margin-left: 20px;
+    font-size: 24px;
+    font-weight: 600;
+    color: cornflowerblue;
+}
+
+.form-to-fill-in a:hover, .recipe-form-block a:hover {
+    transform: scale(1.1);
+}
+
+.homePageButton {
+    width: 90%;
+    color: #bdcbd4;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.form-to-fill-in input[type="submit"]:hover, .recipe-form-block button[type="submit"]:hover, .recipe-list-block button[type="submit"]:hover, .homePageButton:hover {
+    transform: scale(1.1);
+    color: black;
+}
+
+.form-to-fill-in input[type="submit"]{
+    font-family: "Alumni Sans Pinstripe", serif;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.homePageButton form {
+    box-shadow: none;
+}
+
+.recipe-form-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Центрирует форму по горизонтали */
+    align-items: center; /* Выравнивает по вертикали */
+    height: 70vh; /* Чтобы форма была по центру экрана */
+}
+
+.recipe-form-block form {
+    background-color: #f9f9f9; /* Светлый фон */
+    padding: 20px;
+    border-radius: 10px; /* Скругленные углы */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+    width: 350px; /* Фиксированная ширина */
+    display: flex;
+    flex-direction: column; /* Выстраивает элементы в столбец */
+}
+
+.recipe-form-block label {
+    font-weight: bold;
+}
+
+.recipe-form-block input, .recipe-form-block select, .recipe-form-block textarea {
+    width: 100%; /* Растягивает на всю ширину формы */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.recipe-form-block a {
+    align-self: flex-start;
+    margin-top: 10px;
+}
+
+.recipe-form-block textarea {
+    resize: vertical; /* Позволяет изменять размер только вертикально */
+    min-height: 5em;
+}
+
+.recipe-list-block {
+    background-image: url('../images/recipe-back.png');
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    width: 75vw;
+    margin-top: 15px;
+}
+
+.recipe-list-block h2, .recipe-list-block h3 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.recipe-list-block form {
+    padding: 0;
+    margin-left: 0;
+}
+
+.recipe-list-block button{
+    display:inline;
+    font-size: 20px;
+    height:fit-content;
+    font-family: "Alumni Sans Pinstripe", serif;
+    text-transform: lowercase;
+    font-weight: 600;
+}
+
+.repeated-button{
+    margin-bottom: 0;
+}
+
+#add-recipe-button button{
+    font-family: "Alumni Sans Pinstripe", serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.flex-box{
+    display: flex;
+    justify-self: baseline;
+}
+
+.errorMessage {
+    color: firebrick;
+}
+
+.successMessage {
+    color: darkslategrey;
+}

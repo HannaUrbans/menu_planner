@@ -1,0 +1,30 @@
+<div th:fragment="header">
+    <!-- впоследствии будет виден или main-menu, или auth-reg-button -->
+
+    <div class="header-nav-buttons">
+        <div class="menu-button"><a th:href="@{/goToMainPage}"><img th:src="@{/images/home-icon.png}" alt="home-icon"
+                                                                    class="button-icon"></a></div>
+        <div class="auth-reg-button">
+            <a th:href="@{/goToAuthPage}">
+                <button>
+                    <img th:src="@{/images/profile-icon.png}" alt="profile-icon" class="button-icon">
+                    Войти/зарегистрироваться
+                </button>
+            </a>
+        </div>
+
+        <!-- <div class="main-menu">
+             <nav>
+                 <ul>
+                     <li>
+                         <span>Заглушка роли и имени юзера</span>
+                         <div class="dropdown-content">
+                             <a th:href="@{/goToStubPage}">Изменить профиль</a>
+                             <a th:href="@{/logout}">Выйти</a>
+                         </div>
+                     </li>
+                 </ul>
+             </nav>
+         </div> -->
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Планировщик меню</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe:ital@0;1&family=LXGW+WenKai+TC&display=swap" rel="stylesheet">
+</head>
+<body id="main-page">
+<div class="display-flex-main-page">
+    <form th:action="@{/showAllRecipes}">
+        <button type="submit">Получить рецепт</button>
+    </form>
+    <form th:action="@{/goToGetMenuPage}">
+        <button type="submit">Получить меню</button>
+    </form>
+</div>
+</body>
+</html>
+
