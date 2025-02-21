@@ -45,24 +45,34 @@ public class RecipeDAOImpl implements RecipeDAO {
             return false;
         }
 
-        // временно
+        // Временно создаем пользователя, если он не передан
         if (currentUser == null) {
             currentUser = new User("x", "123");
         }
 
         Session currentSession = sessionFactory.getCurrentSession();
+        Recipe existingRecipe = currentSession.get(Recipe.class, recipe.getId());
 
         try {
-            if (recipe.getAuthorSet() == null) {
+            if (existingRecipe == null) {
+                // Создаем новый рецепт
                 recipe.setAuthorSet(new HashSet<>());
-                System.out.println("Добавляется первый автор");
+                recipe.getAuthorSet().add(currentUser);
+                currentSession.persist(recipe);
             } else {
-                System.out.println("Добавляется соавтор");
+                // Обновляем существующий рецепт
+                Set<User> authorSet = existingRecipe.getAuthorSet();
+                if (authorSet == null) {
+                    authorSet = new HashSet<>();
+                    existingRecipe.setAuthorSet(authorSet);
+                }
+                authorSet.add(currentUser);
+                recipe.setAuthorSet(authorSet);
+                currentSession.merge(recipe);
             }
-            recipe.getAuthorSet().add(currentUser);
-            currentSession.merge(recipe);
             return true;
         } catch (Exception e) {
+            e.printStackTrace(); // Логируем ошибку
             return false;
         }
     }

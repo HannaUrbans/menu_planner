@@ -23,6 +23,10 @@
         <div th:text="${recipe.ingredients}"></div>
         <h3>Как готовить:</h3>
         <div th:text="${recipe.description}"></div>
+        <h3>Автор:</h3>
+        <div th:each="author : ${recipe.authorSet}">
+            <div th:text= "${author}"></div>
+        </div>
         <div class="flex-box">
             <form th:action="@{/showUpdateForm}" method="get">
                 <input type="hidden" name="recipeId" th:value="${recipe.id}">
