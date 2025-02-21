@@ -30,7 +30,7 @@ public class Recipe {
     @Column(name = "description")
     private String description;
 
-   @ManyToMany
+   @ManyToMany(cascade = CascadeType.ALL)
    @JoinTable(name="recipe_author",
    // внешний ключ, который указывает на текущую таблицу (первый столбец)
    joinColumns = @JoinColumn(name = "recipe_id"),

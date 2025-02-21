@@ -1,11 +1,10 @@
 <div xmlns:th="http://www.thymeleaf.org" th:fragment="main-content" class="recipe-list-block">
-    <!--
-    <h2>Неавторизованным пользователям доступен лишь список рецептов. <br>
-        Для получения описания блюда и процесса приготовления, пожалуйста, зарегистрируйтесь.</h2>
-        -->
-    <h2 class="short-description">Это заглушка текста, которая будет использоваться, когда пользователь в сети и ему доступны все возможности.<br>
-        Это заглушка текста, которая будет использоваться, когда пользователь в сети и ему доступны все возможности.</h2>
-    <div id="add-recipe-button">
+
+    <h2> <span th:if = "${user == null}">Неавторизованным пользователям доступен лишь список рецептов. <br>
+        Для получения описания блюда и процесса приготовления, пожалуйста, зарегистрируйтесь. </span></h2>
+
+    <h2 class="short-description" th:if = "${user != null}">Добро пожаловать на страницу с рецептами.</h2>
+    <div id="add-recipe-button" th:if = "${user != null}">
         <form th:action="@{/showCreateForm}" method="get">
             <button type="submit">
                 <img th:src="@{/images/add-recipe-icon.png}" alt="add-recipe-icon" class="button-icon">
@@ -19,15 +18,19 @@
         <div th:text="${recipe.mealCategory.getCategoryName()}"></div>
         <h3>Калорийность:</h3>
         <div th:text="${recipe.caloricValue + ' ккал'}"></div>
+
+        <span th:if = "${user != null}">
         <h3>Ингредиенты:</h3>
         <div th:text="${recipe.ingredients}"></div>
         <h3>Как готовить:</h3>
         <div th:text="${recipe.description}"></div>
+        </span>
+
         <h3>Автор:</h3>
         <div th:each="author : ${recipe.authorSet}">
             <div th:text= "${author}"></div>
         </div>
-        <div class="flex-box">
+        <div class="flex-box" th:if = "${user != null}">
             <form th:action="@{/showUpdateForm}" method="get">
                 <input type="hidden" name="recipeId" th:value="${recipe.id}">
                 <button class="repeated-button" type="submit"

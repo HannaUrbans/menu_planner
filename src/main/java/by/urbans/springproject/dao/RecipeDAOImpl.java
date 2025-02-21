@@ -58,7 +58,8 @@ public class RecipeDAOImpl implements RecipeDAO {
                 // Создаем новый рецепт
                 recipe.setAuthorSet(new HashSet<>());
                 recipe.getAuthorSet().add(currentUser);
-                currentSession.persist(recipe);
+                //currentSession.merge(recipe);
+
             } else {
                 // Обновляем существующий рецепт
                 Set<User> authorSet = existingRecipe.getAuthorSet();
@@ -68,8 +69,10 @@ public class RecipeDAOImpl implements RecipeDAO {
                 }
                 authorSet.add(currentUser);
                 recipe.setAuthorSet(authorSet);
-                currentSession.merge(recipe);
+                //currentSession.merge(recipe);
             }
+
+            currentSession.merge(recipe);
             return true;
         } catch (Exception e) {
             e.printStackTrace(); // Логируем ошибку

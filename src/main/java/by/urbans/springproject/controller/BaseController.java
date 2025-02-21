@@ -95,7 +95,7 @@ public class BaseController {
 
     // Работа с юзером ИНОЕ
     @GetMapping("/goToProfilePage")
-    public String goToProfilePage(@SessionAttribute("user") User user, Model model) {
+    public String goToProfilePage(@ModelAttribute("user") User user, Model model) {
         model.addAttribute("user", user);
         model.addAttribute("content", "main-block/profile-page");
         return "layout/layout";
