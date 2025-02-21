@@ -95,10 +95,10 @@ public class BaseController {
 
     // Работа с юзером ИНОЕ
     @GetMapping("/goToProfilePage")
-    public String goToProfilePage(@ModelAttribute("user") User user, Model model) {
-        System.out.println("user: " + user.toString());
+    public String goToProfilePage(@SessionAttribute("user") User user, Model model) {
         model.addAttribute("user", user);
-        return "profile-page";
+        model.addAttribute("content", "main-block/profile-page");
+        return "layout/layout";
     }
 
     // Работа с формой с рецептами

@@ -1,10 +1,11 @@
 <div th:fragment="header">
-    <!-- впоследствии будет виден или main-menu, или auth-reg-button -->
 
     <div class="header-nav-buttons">
+
         <div class="menu-button"><a th:href="@{/goToMainPage}"><img th:src="@{/images/home-icon.png}" alt="home-icon"
                                                                     class="button-icon"></a></div>
-        <div class="auth-reg-button">
+
+        <div class="auth-reg-button" th:if="${user == null}">
             <a th:href="@{/goToAuthPage}">
                 <button>
                     <img th:src="@{/images/profile-icon.png}" alt="profile-icon" class="button-icon">
@@ -13,11 +14,11 @@
             </a>
         </div>
 
-        <!-- <div class="main-menu">
+         <div class="main-menu" th:if="${user != null}">
              <nav>
                  <ul>
                      <li>
-                         <span>Заглушка роли и имени юзера</span>
+                         <span th:text="${user.login}"> </span>
                          <div class="dropdown-content">
                              <a th:href="@{/goToStubPage}">Изменить профиль</a>
                              <a th:href="@{/logout}">Выйти</a>
@@ -25,6 +26,6 @@
                      </li>
                  </ul>
              </nav>
-         </div> -->
+         </div>
     </div>
 </div>
