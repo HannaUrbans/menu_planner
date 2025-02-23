@@ -13,6 +13,6 @@ public interface RecipeDAO {
 
     boolean createOrUpdateRecipe(Recipe recipe, User currentUser);
 
-    boolean deleteRecipe(int recipeId);
+    boolean deleteRecipe(int recipeId, User currentUser);
 
 }

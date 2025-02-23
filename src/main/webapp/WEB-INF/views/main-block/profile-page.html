@@ -1,3 +1,8 @@
 <div xmlns:th="http://www.thymeleaf.org" th:fragment="main-content">
-<h2 >Здравствуйте, <span th:text="${user.login}"></span> </h2>
+    <div class="short-description"><h2>Здравствуйте, <span th:text="${user.login}"></span></h2>
+        <br>
+        <a id="profile-page-a" th:href="@{/showAllUserOperationHistory}">Просмотреть историю действий пользователя</a>
+        <br>
+        <a id="profile-page-a" th:href="@{/showAllRecipes}">Вернуться к списку рецептов</a>
+    </div>
 </div>

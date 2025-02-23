@@ -5,6 +5,7 @@ import by.urbans.springproject.bean.Auth;
 import by.urbans.springproject.bean.Recipe;
 import by.urbans.springproject.bean.User;
 import by.urbans.springproject.service.RecipeService;
+import by.urbans.springproject.service.UserRecipeOperationService;
 import by.urbans.springproject.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +25,13 @@ public class BaseController {
 
     private final RecipeService recipeService;
     private final UserService userService;
+    private final UserRecipeOperationService userRecipeOperationService;
 
     @Autowired
-    public BaseController(RecipeService recipeService, UserService userService) {
+    public BaseController(RecipeService recipeService, UserService userService, UserRecipeOperationService userRecipeOperationService) {
         this.recipeService = recipeService;
         this.userService = userService;
+        this.userRecipeOperationService = userRecipeOperationService;
     }
 
     // Главная страница
@@ -101,6 +104,15 @@ public class BaseController {
         return "layout/layout";
     }
 
+    @GetMapping("/showAllUserOperationHistory")
+    public String showAllUserOperationHistory(@ModelAttribute("user") User user, Model model) {
+        model.addAttribute("user", user);
+        model.addAttribute("content", "main-block/user-operation-history-page");
+        model.addAttribute("userRecipeOperationHistory", userRecipeOperationService.getAllUserRecipeOperations());
+        return "layout/layout";
+    }
+
+
     // Работа с формой с рецептами
     @GetMapping("/showAllRecipes")
     public String showAllRecipes(Model model) {
@@ -139,9 +151,9 @@ public class BaseController {
     }
 
     @GetMapping("/deleteRecipe")
-    public String deleteRecipe(@RequestParam("recipeId") int id) {
+    public String deleteRecipe(@RequestParam("recipeId") int id, @SessionAttribute("user") User user) {
         // в input type="hidden" формы с кнопкой "удалить" привязывали-передавали атрибут айдишника рецепта
-        recipeService.deleteRecipe(id);
+        recipeService.deleteRecipe(id, user);
         return "redirect:/showAllRecipes";
     }
 

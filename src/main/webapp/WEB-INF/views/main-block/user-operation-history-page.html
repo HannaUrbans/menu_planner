@@ -1,0 +1,10 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="main-content">
+    <div class="short-description">
+        <ul>
+            <li th:each="operation : ${userRecipeOperationHistory}">
+                <p th:text="${operation}"></p>
+                <hr>
+            </li>
+        </ul>
+    </div>
+</div>

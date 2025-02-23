@@ -81,7 +81,6 @@ public class UserDAOImpl implements UserDAO {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Ошибка в merge");
             return false;
         }
     }

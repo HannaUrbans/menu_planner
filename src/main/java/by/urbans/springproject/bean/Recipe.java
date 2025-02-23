@@ -2,6 +2,8 @@ package by.urbans.springproject.bean;
 
 import by.urbans.springproject.enums.MealCategory;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 import java.util.Set;
@@ -11,60 +13,45 @@ import java.util.Set;
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
+    @NotEmpty(message = "Поле \"название\" не заполнено")
     private String name;
 
     //эта аннотация используется, если выбирается только ОДНО значение из енама
     @Enumerated(EnumType.STRING)
-    @Column(name = "category")
+    @Column(name = "category", nullable = false)
+    @NotNull(message = "Поле \"категория\" не заполнено")
     private MealCategory mealCategory;
 
-    @Column(name = "caloric_value")
+    @Column(name = "caloric_value", nullable = false)
+    @NotNull(message = "Поле \"калорийность\" не заполнено")
     private float caloricValue;
 
-    @Column(name = "ingredients")
+    @Column(name = "ingredients", nullable = false)
+    @NotEmpty(message = "Поле \"ингредиенты\" не заполнено")
     private String ingredients;
 
-    @Column(name = "description")
+    @Column(name = "description", nullable = false)
+    @NotEmpty(message = "Поле \"описание\" не заполнено")
     private String description;
 
-   @ManyToMany(cascade = CascadeType.ALL)
-   @JoinTable(name="recipe_author",
-   // внешний ключ, который указывает на текущую таблицу (первый столбец)
-   joinColumns = @JoinColumn(name = "recipe_id"),
-   //внешний ключ, который указывает на связанную таблицу (второй столбец)
-   inverseJoinColumns =  @JoinColumn (name = "user_id")
-   )
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @JoinTable(name = "recipe_author",
+            // внешний ключ, который указывает на текущую таблицу (первый столбец)
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            //внешний ключ, который указывает на связанную таблицу (второй столбец)
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
     private Set<User> authorSet;
 
-   @ManyToMany
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private Set<UserRecipeOperation> recipeOperations;
 
     public Recipe() {
     }
-
-//    public Recipe(String name, MealCategory mealCategory, float caloricValue, String ingredients, String description, Set<User> author, Set<UserRecipeOperation> recipeOperations) {
-//        this.name = name;
-//        this.mealCategory = mealCategory;
-//        this.caloricValue = caloricValue;
-//        this.ingredients = ingredients;
-//        this.description = description;
-////        this.author = author;
-////        this.recipeOperations = recipeOperations;
-//    }
-
-//    public Recipe(int id, String name, MealCategory mealCategory, float caloricValue, String ingredients, String description, Set<User> author, Set<UserRecipeOperation> recipeOperations) {
-//        this.id = id;
-//        this.name = name;
-//        this.mealCategory = mealCategory;
-//        this.caloricValue = caloricValue;
-//        this.ingredients = ingredients;
-//        this.description = description;
-////        this.author = author;
-////        this.recipeOperations = recipeOperations;
-//    }
 
     public int getId() {
         return id;

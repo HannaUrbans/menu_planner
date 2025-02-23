@@ -1,0 +1,14 @@
+<div th:fragment="footer">
+  <svg width="80vw" height="100" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <!-- Путь, который будет анимирован -->
+    <path id="handwriting-path" d="M10 50 H290"
+          fill="none" stroke="#4682B4" stroke-width="2" stroke-dasharray="1000" stroke-dashoffset="1000">
+      <!-- Анимация "туда-сюда" -->
+      <animate attributeName="stroke-dashoffset"
+               values="1000;0;1000"
+               keyTimes="0;0.5;1"
+               dur="10s"
+               repeatCount="indefinite" />
+    </path>
+  </svg>
+</div>

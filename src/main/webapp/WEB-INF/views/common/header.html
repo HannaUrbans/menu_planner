@@ -18,7 +18,7 @@
              <nav>
                  <ul>
                      <li>
-                         <span th:text="${user.login}"> </span>
+                         <a th:text="${user.login}" th:href="@{/goToProfilePage}"> </a>
                          <div class="dropdown-content">
                              <a th:href="@{/goToStubPage}">Изменить профиль</a>
                              <a th:href="@{/logout}">Выйти</a>

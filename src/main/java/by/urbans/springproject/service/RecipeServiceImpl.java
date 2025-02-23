@@ -39,7 +39,7 @@ public class RecipeServiceImpl implements RecipeService{
 
     @Transactional
     @Override
-    public boolean deleteRecipe(int recipeId) {
-       return (recipeDAO.deleteRecipe(recipeId));
+    public boolean deleteRecipe(int recipeId, User currentUser) {
+       return recipeDAO.deleteRecipe(recipeId, currentUser);
     }
 }

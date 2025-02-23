@@ -1,22 +1,24 @@
 package by.urbans.springproject.bean;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "login")})
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User implements AuthorizedUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private int id;
     /*можно добавить кастомную валидацию unique этот логин уже занят*/
 
-    @Column(name = "login")
+    @Column(name = "login", unique = true, nullable = false, length = 10)
     @NotEmpty(message = "Поле \"логин\" не заполнено")
     @Size(max = 10, message = "Не используйте более 10 символов")
     private String login;
@@ -24,11 +26,11 @@ public class User implements AuthorizedUser {
     @Transient
     private String password;
 
-    @Column(name = "hashed_password")
+    @Column(name = "hashed_password", nullable = false)
     @NotEmpty(message = "Поле \"пароль\" не заполнено")
     private String hashedPassword;
 
-    @Column(name = "phone")
+    @Column(name = "phone", nullable = false, length = 13)
     @Size(min = 13, max = 13, message = "Неверное количество знаков")
     @Pattern(regexp = "[+]\\d{12}", message = "Неверный формат")
     private String phone;
@@ -132,11 +134,6 @@ public class User implements AuthorizedUser {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "{" +
-               "id=" + id +
-               ", login='" + login + '\'' +
-               ", phone='" + phone + '\'' +
-               ", userRole=" + userRole +
-               '}';
+        return login;
     }
 }

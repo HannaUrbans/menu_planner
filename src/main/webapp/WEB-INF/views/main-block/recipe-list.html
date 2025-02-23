@@ -1,9 +1,9 @@
 <div xmlns:th="http://www.thymeleaf.org" th:fragment="main-content" class="recipe-list-block">
 
-    <h2> <span th:if = "${user == null}">Неавторизованным пользователям доступен лишь список рецептов. <br>
-        Для получения описания блюда и процесса приготовления, пожалуйста, зарегистрируйтесь. </span></h2>
+    <h2 class="short-description"> <span th:if = "${user == null}">Неавторизованным пользователям доступен лишь список рецептов. <br>
+        Для получения описания блюда и процесса приготовления, пожалуйста, зарегистрируйтесь </span></h2>
 
-    <h2 class="short-description" th:if = "${user != null}">Добро пожаловать на страницу с рецептами.</h2>
+    <h2 class="short-description" th:if = "${user != null}">Добро пожаловать на страницу с рецептами</h2>
     <div id="add-recipe-button" th:if = "${user != null}">
         <form th:action="@{/showCreateForm}" method="get">
             <button type="submit">

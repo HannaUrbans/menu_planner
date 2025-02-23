@@ -60,7 +60,9 @@ header {
     font-weight: 600;
     font-size: 20px;
 }
-
+.main-menu a:hover{
+    border-radius: 8px;
+}
 .main-menu span {
     border-radius: 8px;
     cursor: pointer;
@@ -76,6 +78,7 @@ header {
 
 .main-menu li a:hover {
     transform: scale(1.1);
+    border-radius: 8px;
 }
 
 /* Скрытие выпадающего контента */
@@ -191,10 +194,9 @@ h2 {
 }
 
 .short-description{
-    color: #C0C0C0;
     font-size: 36px;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-
+    color:#4682B4;
+    width: 80vw;
 }
 
 .form-a {
@@ -304,7 +306,7 @@ button:hover {
     flex-direction: column;
 }
 
-.form-to-fill-in a, .recipe-form-block a {
+.form-to-fill-in a, .recipe-form-block a, .short-description a {
     text-decoration: none;
     font-family: "Alumni Sans Pinstripe", serif;
     margin-left: 20px;
@@ -313,7 +315,11 @@ button:hover {
     color: cornflowerblue;
 }
 
-.form-to-fill-in a:hover, .recipe-form-block a:hover {
+#profile-page-a {
+    margin-left: 0;
+}
+
+.form-to-fill-in a:hover, .recipe-form-block a:hover, .short-description a:hover {
     transform: scale(1.1);
 }
 
@@ -338,6 +344,10 @@ button:hover {
 
 .homePageButton form {
     box-shadow: none;
+}
+
+.recipe-body{
+    margin-top:10px;
 }
 
 .recipe-form-block {
@@ -384,6 +394,7 @@ button:hover {
     background-image: url('../images/recipe-back.png');
     background-position: right bottom;
     background-repeat: no-repeat;
+    background-size: contain;
     width: 75vw;
     margin-top: 15px;
 }
@@ -405,6 +416,7 @@ button:hover {
     font-family: "Alumni Sans Pinstripe", serif;
     text-transform: lowercase;
     font-weight: 600;
+    background-color: #C0C0C0;
 }
 
 .repeated-button{
