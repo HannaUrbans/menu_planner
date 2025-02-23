@@ -23,12 +23,21 @@ public class UserRecipeOperationDAOImpl implements UserRecipeOperationDAO {
 
     @Transactional
     @Override
-    public List<UserRecipeOperation> getAllUserRecipeOperations() {
+    public List<UserRecipeOperation> getAllUserRecipeOperations(int userId) {
+        if (userId <= 0) {
+            return null;
+        }
 
         Session currentSession = sessionFactory.getCurrentSession();
 
-        Query<UserRecipeOperation> query = currentSession.createQuery("from UserRecipeOperation", UserRecipeOperation.class);
-        return new ArrayList<>(query.getResultList());
+        Query<UserRecipeOperation> query = currentSession.createQuery("from UserRecipeOperation where recipeAuthor.id = :userId", UserRecipeOperation.class);
+        query.setParameter("userId", userId);
+        try {
+            return new ArrayList<>(query.getResultList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Transactional

@@ -116,13 +116,12 @@ public class BaseController {
     }
 
     @GetMapping("/showAllUserOperationHistory")
-    public String showAllUserOperationHistory(@ModelAttribute("user") User user, Model model) {
+    public String showAllUserOperationHistory(@RequestParam("userId") int userId, @ModelAttribute("user") User user, Model model) {
         model.addAttribute("user", user);
         model.addAttribute("content", "main-block/user-operation-history-page");
-        model.addAttribute("userRecipeOperationHistory", userRecipeOperationService.getAllUserRecipeOperations());
+        model.addAttribute("userRecipeOperationHistory", userRecipeOperationService.getAllUserRecipeOperations(userId));
         return "layout/layout";
     }
-
 
     // Работа с формой с рецептами
     @GetMapping("/chooseHowToDisplayRecipes")

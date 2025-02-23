@@ -21,8 +21,8 @@ public class UserRecipeOperationServiceImpl implements UserRecipeOperationServic
 
     @Transactional
     @Override
-    public List<UserRecipeOperation> getAllUserRecipeOperations() {
-        return new ArrayList<>(userRecipeOperationDAO.getAllUserRecipeOperations());
+    public List<UserRecipeOperation> getAllUserRecipeOperations(int userId) {
+        return new ArrayList<>(userRecipeOperationDAO.getAllUserRecipeOperations(userId));
     }
 
     @Transactional

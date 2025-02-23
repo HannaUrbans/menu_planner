@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserRecipeOperationService {
 
-    List<UserRecipeOperation> getAllUserRecipeOperations();
+    List<UserRecipeOperation> getAllUserRecipeOperations(int userId);
 
     UserRecipeOperation getUserRecipeOperationById(int userRecipeOperationId);
 

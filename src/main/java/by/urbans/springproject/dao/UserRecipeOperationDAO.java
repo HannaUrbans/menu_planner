@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface UserRecipeOperationDAO {
-    List<UserRecipeOperation> getAllUserRecipeOperations();
+    List<UserRecipeOperation> getAllUserRecipeOperations(int userId);
 
     UserRecipeOperation getUserRecipeOperationById(int userRecipeOperationId);
 
