@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "user_recipe_operation")
@@ -18,12 +16,12 @@ public class UserRecipeOperation {
     private int id;
 
     @ManyToOne
-    @JoinColumn (name= "user_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     @NotNull(message = "Поле \"автор\" не заполнено")
     private User recipeAuthor;
 
     @ManyToOne
-    @JoinColumn (name = "recipe_id", nullable = false)
+    @JoinColumn(name = "recipe_id", nullable = false)
     @NotNull(message = "Поле \"рецепт\" не заполнено")
     private Recipe recipe;
 
@@ -44,5 +42,18 @@ public class UserRecipeOperation {
         this.recipe = recipe;
         this.operation = operation;
         this.operationTimestamp = operationTimestamp;
+    }
+
+    @Override
+    public String toString() {
+        try {
+            return "id операции = " + id +
+                   ", id рецепта: " + (recipe != null ? recipe.getId() : "нет данных") +
+                   ", наименование рецепта: " + (recipe != null ? recipe.getName() : "нет данных") +
+                   ", действие: " + operation +
+                   ", время: " + operationTimestamp;
+        } catch (Exception e) {
+            return "Ошибка в toString(): " + e.getMessage();
+        }
     }
 }

@@ -60,9 +60,11 @@ header {
     font-weight: 600;
     font-size: 20px;
 }
-.main-menu a:hover{
+
+.main-menu a:hover {
     border-radius: 8px;
 }
+
 .main-menu span {
     border-radius: 8px;
     cursor: pointer;
@@ -112,23 +114,23 @@ header {
     margin-top: 15px;
 }
 
-.menu-button img{
+.menu-button img {
     height: 70px;
     margin: 10px;
 }
 
-.menu-button img:hover{
+.menu-button img:hover {
     transform: scale(1.1);
 }
 
-#auth-form{
+#auth-form {
     background-image: url('../images/circle-back.png'), url('../images/rect-back.png');
     background-position-x: 350px, 500px;
     background-position-y: 100px;
     background-size: 700px;
 }
 
-#reg-form{
+#reg-form {
     background-image: url('../images/circle-back2.png');
     background-position-x: 350px;
     background-position-y: 100px;
@@ -158,8 +160,8 @@ header {
     transform: scale(1.1);
 }
 
-.form-a .additional-go-to-main-page-a{
-    color:black;
+.form-a .additional-go-to-main-page-a {
+    color: black;
     font-size: 18px;
 }
 
@@ -190,12 +192,18 @@ header {
 h2 {
     font-family: "Alumni Sans Pinstripe", serif;
     font-size: 24px;
-    color:cornflowerblue;
+    color: cornflowerblue;
 }
 
-.short-description{
+.short-description {
     font-size: 36px;
-    color:#4682B4;
+    color: #4682B4;
+    width: 80vw;
+}
+
+.short-description ul, .short-description li {
+    font-size: 24px;
+    color: black;
     width: 80vw;
 }
 
@@ -306,7 +314,7 @@ button:hover {
     flex-direction: column;
 }
 
-.form-to-fill-in a, .recipe-form-block a, .short-description a {
+.form-to-fill-in a, .recipe-form-block a {
     text-decoration: none;
     font-family: "Alumni Sans Pinstripe", serif;
     margin-left: 20px;
@@ -315,8 +323,82 @@ button:hover {
     color: cornflowerblue;
 }
 
-#profile-page-a {
-    margin-left: 0;
+.short-description a, .buttons-in-line a {
+    color: black;
+}
+
+.short-description a:hover {
+    color: cornflowerblue;
+}
+
+.buttons-in-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 75vw;
+    height: 30vh;
+}
+
+.buttons-in-line a:hover {
+    transform: scale(1.1);
+}
+
+.first-button {
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.second-button {
+    background-color: #ebeef0;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 30%;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.third-button {
+    background-color: #bdcbd4;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.standard-a {
+    margin-top: 20px;
+}
+
+.standard-a a {
+    text-decoration: none;
+    font-family: "Alumni Sans Pinstripe", serif;
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: 600;
+    color: black;
+}
+
+.standard-a a:hover {
+    color: cornflowerblue;
+}
+
+.first-button a, .second-button a, .third-button a {
+    font-size: 36px;
+    font-weight: 600;
+    text-decoration: none;
+    margin: auto;
+    font-family: "Alumni Sans Pinstripe", serif;
+}
+
+.first-button a:hover, .second-button a:hover, .third-button a:hover {
+    transform: scale(1.1);
 }
 
 .form-to-fill-in a:hover, .recipe-form-block a:hover, .short-description a:hover {
@@ -336,7 +418,7 @@ button:hover {
     color: black;
 }
 
-.form-to-fill-in input[type="submit"]{
+.form-to-fill-in input[type="submit"] {
     font-family: "Alumni Sans Pinstripe", serif;
     font-size: 20px;
     font-weight: 600;
@@ -346,8 +428,8 @@ button:hover {
     box-shadow: none;
 }
 
-.recipe-body{
-    margin-top:10px;
+.recipe-body {
+    margin-top: 10px;
 }
 
 .recipe-form-block {
@@ -409,28 +491,28 @@ button:hover {
     margin-left: 0;
 }
 
-.recipe-list-block button{
-    display:inline;
+.recipe-list-block button {
+    display: inline;
     font-size: 20px;
-    height:fit-content;
+    height: fit-content;
     font-family: "Alumni Sans Pinstripe", serif;
     text-transform: lowercase;
     font-weight: 600;
     background-color: #C0C0C0;
 }
 
-.repeated-button{
+.repeated-button {
     margin-bottom: 0;
 }
 
-#add-recipe-button button{
+#add-recipe-button button {
     font-family: "Alumni Sans Pinstripe", serif;
     font-size: 20px;
     font-weight: 600;
     text-transform: uppercase;
 }
 
-.flex-box{
+.flex-box {
     display: flex;
     justify-self: baseline;
 }

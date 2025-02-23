@@ -114,6 +114,12 @@ public class BaseController {
 
 
     // Работа с формой с рецептами
+    @GetMapping("/chooseHowToDisplayRecipes")
+    public String chooseHowToDisplayRecipes(Model model){
+        model.addAttribute("content", "main-block/choose-recipe-display");
+        return "layout/layout";
+    }
+
     @GetMapping("/showAllRecipes")
     public String showAllRecipes(Model model) {
         Set<Recipe> recipes = recipeService.getAllRecipes();
