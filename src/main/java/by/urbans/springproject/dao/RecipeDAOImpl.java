@@ -3,6 +3,7 @@ package by.urbans.springproject.dao;
 import by.urbans.springproject.bean.Recipe;
 import by.urbans.springproject.bean.User;
 import by.urbans.springproject.bean.UserRecipeOperation;
+import by.urbans.springproject.enums.MealCategory;
 import by.urbans.springproject.enums.RecipeOperation;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -116,6 +118,25 @@ public class RecipeDAOImpl implements RecipeDAO {
             return true;
         } catch (Exception e) {
             return false;
+        }
+    }
+
+    public List <Recipe> getRecipesByCategory(MealCategory category) {
+        if (category == null) {
+            return null;
+        }
+
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        Query<Recipe> query = currentSession.createQuery("from Recipe where mealCategory = :mealCategory", Recipe.class);
+        query.setParameter("mealCategory", category);
+
+        try{
+            return query.getResultList();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
         }
     }
 }

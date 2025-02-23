@@ -1,7 +1,7 @@
 package by.urbans.springproject.enums;
 
 public enum MealCategory {
-    BREAKFAST("завтрак"), DINNER("обед"), SUPPER("ужин");
+    BREAKFAST("Завтрак"), LUNCH("Обед"), DINNER("Ужин");
 
     private final String categoryName;
 

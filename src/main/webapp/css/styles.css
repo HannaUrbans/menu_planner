@@ -6,7 +6,6 @@ body {
     background-repeat: no-repeat; /* не повторять изображение */
     /*padding: 20px; /* отступы для body */
     box-sizing: border-box;
-    height: 100vh;
 }
 
 .display-flex-main-page button {
@@ -19,7 +18,8 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-image: url('../images/back.jpg'); /* фон для body */
+    background-image: url('../images/back.jpg');
+    height:100vh;
 }
 
 .layout_page {
@@ -27,6 +27,7 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    min-height: 100vh;
 }
 
 header {
@@ -34,7 +35,9 @@ header {
     width: 100%;
     max-width: 100%;
 }
-
+.footer {
+    margin-top: auto; /* Прижимает футер вниз */
+}
 .main-menu ul {
     list-style-type: none;
     padding: 0;
@@ -201,7 +204,7 @@ h2 {
     width: 80vw;
 }
 
-.short-description ul, .short-description li {
+.short-description ol, .short-description li {
     font-size: 24px;
     color: black;
     width: 80vw;
@@ -331,12 +334,18 @@ button:hover {
     color: cornflowerblue;
 }
 
+.short-description p {
+    font-family: "LXGW WenKai TC", serif;
+    font-size: 20px;
+}
+
 .buttons-in-line {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 75vw;
-    height: 30vh;
+    align-items: center;
+    height: 40vh;
 }
 
 .buttons-in-line a:hover {
@@ -350,6 +359,7 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 50%;
 }
 
 .second-button {
@@ -361,6 +371,7 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 50%;
 }
 
 .third-button {
@@ -370,6 +381,7 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 50%;
 }
 
 .standard-a {
@@ -430,6 +442,7 @@ button:hover {
 
 .recipe-body {
     margin-top: 10px;
+    width: 55%;
 }
 
 .recipe-form-block {

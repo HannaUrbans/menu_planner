@@ -47,11 +47,11 @@ public class UserRecipeOperation {
     @Override
     public String toString() {
         try {
-            return "id операции = " + id +
-                   ", id рецепта: " + (recipe != null ? recipe.getId() : "нет данных") +
-                   ", наименование рецепта: " + (recipe != null ? recipe.getName() : "нет данных") +
-                   ", действие: " + operation +
-                   ", время: " + operationTimestamp;
+            return "id операции: " + id + "<br>" +
+                   "id рецепта: " + (recipe != null ? recipe.getId() : "нет данных") + "<br>" +
+                   "наименование рецепта: " + (recipe != null ? recipe.getName() : "нет данных")  + "<br>" +
+                   "действие: " + operation  + "<br>" +
+                   "время: " + operationTimestamp;
         } catch (Exception e) {
             return "Ошибка в toString(): " + e.getMessage();
         }

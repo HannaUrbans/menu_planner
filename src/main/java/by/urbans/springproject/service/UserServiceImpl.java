@@ -1,9 +1,11 @@
 package by.urbans.springproject.service;
 
 import by.urbans.springproject.bean.Auth;
+import by.urbans.springproject.bean.Recipe;
 import by.urbans.springproject.bean.Role;
 import by.urbans.springproject.bean.User;
 import by.urbans.springproject.dao.UserDAO;
+import by.urbans.springproject.enums.MealCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -59,7 +61,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public List<Role> getRoleList(){
+    public List<Role> getRoleList() {
         return userDAO.getRoleList();
     }
 }

@@ -133,15 +133,11 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "{" +
-               "id=" + id +
-               ", name='" + name + '\'' +
-               ", mealCategory=" + mealCategory +
-               ", caloricValue=" + caloricValue +
-               ", ingredients='" + ingredients + '\'' +
-               ", description='" + description + '\'' +
-               ", authors=" + authorSet +
-               ", recipeOperations=" + recipeOperations +
-               '}';
+        return "id рецепта: " + id + "<br>" +
+               "наименование: " + name + "<br>" +
+               "категория: " + mealCategory + "<br>" +
+               "калорийность: " + caloricValue + "<br>" +
+               "ингредиенты: " + ingredients + "<br>" +
+               "описание: " + description;
     }
 }

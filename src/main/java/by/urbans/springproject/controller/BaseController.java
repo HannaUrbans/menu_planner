@@ -4,6 +4,7 @@ package by.urbans.springproject.controller;
 import by.urbans.springproject.bean.Auth;
 import by.urbans.springproject.bean.Recipe;
 import by.urbans.springproject.bean.User;
+import by.urbans.springproject.enums.MealCategory;
 import by.urbans.springproject.service.RecipeService;
 import by.urbans.springproject.service.UserRecipeOperationService;
 import by.urbans.springproject.service.UserService;
@@ -56,6 +57,16 @@ public class BaseController {
         return "redirect:/goToMainPage";
     }
 
+    @GetMapping("/showRecipesByCategory")
+    public String showRecipesByCategory(@RequestParam("category") MealCategory category, Model model) {
+        List<Recipe> recipesList = recipeService.getRecipeByCategory(category);
+        model.addAttribute("recipes", recipesList);
+        // для h2
+        model.addAttribute("category", category);
+        model.addAttribute("content", "main-block/one-category-recipes");
+        return "layout/layout";
+    }
+
     // Работа с юзером АВТОРИЗАЦИЯ
     @GetMapping("/goToAuthPage")
     public String goToAuthPage(Model model) {
@@ -87,8 +98,8 @@ public class BaseController {
     }
 
     @PostMapping("/doReg")
-    public String doReg(@Valid @ModelAttribute("user") User user, BindingResult bindingResult,  RedirectAttributes redirectAttributes) {
-        if(bindingResult.hasErrors()){
+    public String doReg(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
             return "redirect:/goToRegPage";
         }
@@ -115,7 +126,7 @@ public class BaseController {
 
     // Работа с формой с рецептами
     @GetMapping("/chooseHowToDisplayRecipes")
-    public String chooseHowToDisplayRecipes(Model model){
+    public String chooseHowToDisplayRecipes(Model model) {
         model.addAttribute("content", "main-block/choose-recipe-display");
         return "layout/layout";
     }

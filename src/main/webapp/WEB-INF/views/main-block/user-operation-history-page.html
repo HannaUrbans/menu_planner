@@ -1,9 +1,12 @@
 <div xmlns:th="http://www.thymeleaf.org" th:fragment="main-content">
     <div class="short-description">
-        <ul>
+        <h2><img th:src="@{/images/user-recipe-oper-icon.png}"
+                 alt="user-recipe-operation-icon" class="button-icon">История действий
+            пользователя</h2>
+        <ol>
             <li th:each="operation : ${userRecipeOperationHistory}">
-                <p th:text="${operation}"></p>
+                <p th:utext="${operation}"></p>
             </li>
-        </ul>
+        </ol>
     </div>
 </div>

@@ -1,8 +1,16 @@
 <div xmlns:th="http://www.thymeleaf.org" th:fragment="main-content">
+    <div class="standard-a"><a th:href="@{/showAllRecipes}"> <img th:src="@{/images/all-recipes-icon.png}"
+                                                                  alt="all-recipes-icon" class="button-icon">Просмотреть
+        все рецепты</a></div>
     <div class="buttons-in-line">
-        <div class="first-button"><a th:href="@{/showOneCategoryRecipe}"> Завтрак </a></div>
-        <div class="second-button"><a th:href="@{/showOneCategoryRecipe}"> Обед </a></div>
-        <div class="third-button"><a th:href="@{/showOneCategoryRecipe}"> Ужин </a></div>
+        <div class="first-button"><a th:href="@{/showRecipesByCategory(category='BREAKFAST')}"><img th:src="@{/images/breakfast-icon.png}"
+                                                                              alt="breakfast-icon"
+                                                                              class="button-icon"> Завтрак </a></div>
+        <div class="second-button"><a th:href="@{/showRecipesByCategory(category='LUNCH')}"><img th:src="@{/images/lunch-icon.png}"
+                                                                               alt="lunch-icon"
+                                                                               class="button-icon"> Обед </a></div>
+        <div class="third-button"><a th:href="@{/showRecipesByCategory(category='DINNER')}"><img th:src="@{/images/dinner-icon.png}"
+                                                                              alt="dinner-icon"
+                                                                              class="button-icon"> Ужин </a></div>
     </div>
-    <div class="standard-a" ><a th:href="@{/showAllRecipes}">Просмотреть все рецепты</a></div>
 </div>
