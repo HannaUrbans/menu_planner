@@ -1,11 +1,10 @@
-package by.urbans.springproject.service;
+package by.urbans.springproject.service.Impl;
 
 import by.urbans.springproject.bean.Auth;
-import by.urbans.springproject.bean.Recipe;
 import by.urbans.springproject.bean.Role;
 import by.urbans.springproject.bean.User;
 import by.urbans.springproject.dao.UserDAO;
-import by.urbans.springproject.enums.MealCategory;
+import by.urbans.springproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -48,16 +47,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean doReg(User user) {
         if (user == null) {
-            return false;
+            throw new IllegalArgumentException("Пользователь не может быть null");
         }
-        try {
-            userDAO.createOrUpdateUser(user);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
 
+        if (!userDAO.createOrUpdateUser(user)) {
+            throw new RuntimeException("Не удалось создать или обновить пользователя");
+        }
+
+        return true;
+    }
 
     @Transactional
     @Override

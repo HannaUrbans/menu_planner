@@ -19,7 +19,7 @@ body {
     justify-content: space-around;
     align-items: center;
     background-image: url('../images/back.jpg');
-    height:100vh;
+    height: 100vh;
 }
 
 .layout_page {
@@ -35,9 +35,11 @@ header {
     width: 100%;
     max-width: 100%;
 }
+
 .footer {
     margin-top: auto; /* Прижимает футер вниз */
 }
+
 .main-menu ul {
     list-style-type: none;
     padding: 0;
@@ -336,7 +338,7 @@ button:hover {
 
 .short-description p {
     font-family: "LXGW WenKai TC", serif;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .buttons-in-line {
@@ -442,7 +444,49 @@ button:hover {
 
 .recipe-body {
     margin-top: 10px;
-    width: 55%;
+    width: 80%;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-body-flex {
+    display: flex;
+    flex-direction: row;
+}
+.recipe-body h2{
+    color:#2c3e50;
+    padding:10px;
+}
+
+.recipe-body-left-flex {
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+    font-family: "LXGW WenKai TC", serif;
+    font-size: 18px;
+}
+
+.top-left-block {
+    background-color: #e74c3c;
+    color: white;
+    font-family: "LXGW WenKai TC", serif;
+    font-size: 18px;
+    padding:15px;
+}
+
+.bottom-left-block {
+    background-color: #2c3e50;
+    color: white;
+    font-family: "LXGW WenKai TC", serif;
+    font-size: 18px;
+    padding:15px;
+}
+
+.recipe-body-right-flex {
+    background-color: white;
+    font-family: "LXGW WenKai TC", serif;
+    font-size: 18px;
+    padding:15px;
 }
 
 .recipe-form-block {
@@ -486,10 +530,9 @@ button:hover {
 }
 
 .recipe-list-block {
-    background-image: url('../images/recipe-back.png');
+    /* background-image: url('../images/recipe-back.png'); */
     background-position: right bottom;
     background-repeat: no-repeat;
-    background-size: contain;
     width: 75vw;
     margin-top: 15px;
 }
@@ -509,9 +552,10 @@ button:hover {
     font-size: 20px;
     height: fit-content;
     font-family: "Alumni Sans Pinstripe", serif;
-    text-transform: lowercase;
     font-weight: 600;
-    background-color: #C0C0C0;
+    background-color: transparent;
+    text-align: left;
+    width:auto;
 }
 
 .repeated-button {
@@ -523,6 +567,9 @@ button:hover {
     font-size: 20px;
     font-weight: 600;
     text-transform: uppercase;
+    background-color: #C0C0C0;
+    text-align: center;
+    width:200px;
 }
 
 .flex-box {

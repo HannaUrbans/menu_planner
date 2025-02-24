@@ -1,9 +1,10 @@
-package by.urbans.springproject.service;
+package by.urbans.springproject.service.Impl;
 
 import by.urbans.springproject.bean.Recipe;
 import by.urbans.springproject.bean.User;
 import by.urbans.springproject.dao.RecipeDAO;
 import by.urbans.springproject.enums.MealCategory;
+import by.urbans.springproject.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class RecipeServiceImpl implements RecipeService{
+public class RecipeServiceImpl implements RecipeService {
 
     private final RecipeDAO recipeDAO;
 

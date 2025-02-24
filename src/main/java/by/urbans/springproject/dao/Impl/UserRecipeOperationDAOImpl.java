@@ -1,6 +1,7 @@
-package by.urbans.springproject.dao;
+package by.urbans.springproject.dao.Impl;
 
 import by.urbans.springproject.bean.UserRecipeOperation;
+import by.urbans.springproject.dao.UserRecipeOperationDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -35,8 +36,7 @@ public class UserRecipeOperationDAOImpl implements UserRecipeOperationDAO {
         try {
             return new ArrayList<>(query.getResultList());
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException("Ошибка при отображении операций пользователя", e);
         }
     }
 
@@ -64,8 +64,7 @@ public class UserRecipeOperationDAOImpl implements UserRecipeOperationDAO {
             currentSession.merge(userRecipeOperation);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+            throw new RuntimeException("Ошибка при создании операции", e);
         }
     }
 
@@ -88,8 +87,7 @@ public class UserRecipeOperationDAOImpl implements UserRecipeOperationDAO {
             currentSession.remove(userRecipeOperationToDelete);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+            throw new RuntimeException("Ошибка при удалении операции", e);
         }
     }
 
@@ -107,8 +105,7 @@ public class UserRecipeOperationDAOImpl implements UserRecipeOperationDAO {
         try {
             return query.getSingleResult();
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException("Ошибка при поиске операции", e);
         }
     }
 
@@ -126,8 +123,7 @@ public class UserRecipeOperationDAOImpl implements UserRecipeOperationDAO {
         try {
             return query.getSingleResult();
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException("Ошибка при поиске операции", e);
         }
     }
 }

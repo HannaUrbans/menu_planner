@@ -1,7 +1,8 @@
-package by.urbans.springproject.service;
+package by.urbans.springproject.service.Impl;
 
 import by.urbans.springproject.bean.UserRecipeOperation;
 import by.urbans.springproject.dao.UserRecipeOperationDAO;
+import by.urbans.springproject.service.UserRecipeOperationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

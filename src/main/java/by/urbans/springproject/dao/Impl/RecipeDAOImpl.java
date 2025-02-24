@@ -1,8 +1,10 @@
-package by.urbans.springproject.dao;
+package by.urbans.springproject.dao.Impl;
 
 import by.urbans.springproject.bean.Recipe;
 import by.urbans.springproject.bean.User;
 import by.urbans.springproject.bean.UserRecipeOperation;
+import by.urbans.springproject.dao.RecipeDAO;
+import by.urbans.springproject.dao.UserRecipeOperationDAO;
 import by.urbans.springproject.enums.MealCategory;
 import by.urbans.springproject.enums.RecipeOperation;
 import org.hibernate.Session;
@@ -42,7 +44,11 @@ public class RecipeDAOImpl implements RecipeDAO {
     @Override
     public Set<Recipe> getAllRecipes() {
         Session currentSession = sessionFactory.getCurrentSession();
-        Query<Recipe> query = currentSession.createQuery("from Recipe", Recipe.class);
+        Query<Recipe> query = currentSession.createQuery(
+                "from Recipe r where r.id in (select u.recipe.id from UserRecipeOperation u) " +
+                "order by (select max(u.operationTimestamp) from UserRecipeOperation u where u.recipe.id = r.id) desc",
+                Recipe.class
+        );
         return new HashSet<>(query.getResultList());
     }
 
@@ -92,8 +98,7 @@ public class RecipeDAOImpl implements RecipeDAO {
 
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+            throw new RuntimeException("Ошибка при добавлении/изменении рецепта", e);
         }
     }
 
@@ -117,11 +122,11 @@ public class RecipeDAOImpl implements RecipeDAO {
             currentSession.remove(recipeToRemove);
             return true;
         } catch (Exception e) {
-            return false;
+            throw new RuntimeException("Ошибка при удалении рецепта", e);
         }
     }
 
-    public List <Recipe> getRecipesByCategory(MealCategory category) {
+    public List<Recipe> getRecipesByCategory(MealCategory category) {
         if (category == null) {
             return null;
         }
@@ -131,12 +136,10 @@ public class RecipeDAOImpl implements RecipeDAO {
         Query<Recipe> query = currentSession.createQuery("from Recipe where mealCategory = :mealCategory", Recipe.class);
         query.setParameter("mealCategory", category);
 
-        try{
+        try {
             return query.getResultList();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return null;
+        } catch (Exception e) {
+            throw new RuntimeException("Ошибка при получении рецептов по категории", e);
         }
     }
 }

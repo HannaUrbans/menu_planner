@@ -1,7 +1,8 @@
-package by.urbans.springproject.dao;
+package by.urbans.springproject.dao.Impl;
 
 import by.urbans.springproject.bean.Role;
 import by.urbans.springproject.bean.User;
+import by.urbans.springproject.dao.UserDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -80,8 +81,7 @@ public class UserDAOImpl implements UserDAO {
             currentSession.merge(user);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+            throw new RuntimeException("Ошибка при создании/удалении пользователя", e);
         }
     }
 
@@ -102,7 +102,7 @@ public class UserDAOImpl implements UserDAO {
             currentSession.remove(userToDelete);
             return true;
         } catch (Exception e) {
-            return false;
+            throw new RuntimeException("Ошибка при удалении пользователя", e);
         }
 
     }

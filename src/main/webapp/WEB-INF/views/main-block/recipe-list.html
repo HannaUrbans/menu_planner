@@ -3,7 +3,6 @@
     <h2 class="short-description"> <span th:if="${user == null}">Неавторизованным пользователям доступен лишь список рецептов. <br>
         Для получения описания блюда и процесса приготовления, пожалуйста, зарегистрируйтесь </span></h2>
 
-    <h2 class="short-description" th:if="${user != null}">Добро пожаловать на страницу с рецептами</h2>
     <div id="add-recipe-button" th:if="${user != null}">
         <form th:action="@{/showCreateForm}" method="get">
             <button type="submit">
@@ -15,26 +14,34 @@
     <!-- Впоследствии реализовать отображение по 10 рецептов на странице -->
     <div class="recipe-body" th:each="recipe : ${recipes}">
         <h2 th:text="${recipe.name}"></h2>
-        <div th:text="${recipe.mealCategory.getCategoryName()}"></div>
-        <span th:if="${user != null}"><h3>Калорийность:</h3></span>
-        <div th:text="${recipe.caloricValue + ' ккал'}"></div>
+        <div class="recipe-body-flex" th:if="${user != null}">
+            <div class="recipe-body-left-flex">
+                <div class="top-left-block">
+                    <p th:text="${recipe.mealCategory.getCategoryName()}"></p>
+                    <p th:text="${recipe.caloricValue + ' ккал'}"></p>
+                </div>
+                <div class="bottom-left-block">
+                    <p>Ингредиенты:</p>
+                    <p th:text="${recipe.ingredients}"></p>
+                </div>
+            </div>
 
-        <span th:if="${user != null}">
-        <h3>Ингредиенты:</h3>
-        <div th:text="${recipe.ingredients}"></div>
-        <h3>Как готовить:</h3>
-        <div th:text="${recipe.description}"></div>
-        <h3>Автор:</h3>
-        <div th:each="author : ${recipe.authorSet}">
-            <div th:text="${author}"></div>
+            <div class="recipe-body-right-flex">
+                <h3>Как готовить:</h3>
+                <div th:text="${recipe.description}"></div>
+                <h3>Автор:</h3>
+                <div th:each="author : ${recipe.authorSet}">
+                    <div th:text="${author}"></div>
+                </div>
+            </div>
         </div>
-        </span>
+
         <div class="flex-box" th:if="${user != null}">
+
             <form th:action="@{/showUpdateForm}" method="get">
                 <input type="hidden" name="recipeId" th:value="${recipe.id}">
-                <button class="repeated-button" type="submit"
-                        onclick="return confirm('Изменить рецепт?')">
-                    Изменить рецепт
+                <button class="repeated-button" type="submit">
+                    <img th:src="@{/images/edit-recipe-icon.png}" alt="edit-recipe-icon" class="button-icon">
                 </button>
 
             </form>
@@ -42,7 +49,7 @@
                 <input type="hidden" name="recipeId" th:value="${recipe.id}">
                 <button class="repeated-button" type="submit"
                         onclick="return confirm('Удалить рецепт?')">
-                    Удалить рецепт
+                    <img th:src="@{/images/delete-recipe-icon.png}" alt="delete-recipe-icon" class="button-icon">
                 </button>
             </form>
         </div>
