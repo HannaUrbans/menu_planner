@@ -7,11 +7,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
+// спринг security?
 @Repository
 public class UserRecipeOperationDAOImpl implements UserRecipeOperationDAO {
 
@@ -22,7 +22,6 @@ public class UserRecipeOperationDAOImpl implements UserRecipeOperationDAO {
         this.sessionFactory = sessionFactory;
     }
 
-    @Transactional
     @Override
     public List<UserRecipeOperation> getAllUserRecipeOperations(int userId) {
         if (userId <= 0) {
@@ -40,7 +39,6 @@ public class UserRecipeOperationDAOImpl implements UserRecipeOperationDAO {
         }
     }
 
-    @Transactional
     @Override
     public UserRecipeOperation getUserRecipeOperationById(int userRecipeOperationId) {
         if (userRecipeOperationId <= 0) {
@@ -51,7 +49,6 @@ public class UserRecipeOperationDAOImpl implements UserRecipeOperationDAO {
         return currentSession.get(UserRecipeOperation.class, userRecipeOperationId);
     }
 
-    @Transactional
     @Override
     public boolean createUserRecipeOperation(UserRecipeOperation userRecipeOperation) {
         if (userRecipeOperation == null) {
@@ -68,7 +65,6 @@ public class UserRecipeOperationDAOImpl implements UserRecipeOperationDAO {
         }
     }
 
-    @Transactional
     @Override
     public boolean deleteUserRecipeOperation(int userRecipeOperationId) {
         if (userRecipeOperationId <= 0) {
@@ -91,7 +87,6 @@ public class UserRecipeOperationDAOImpl implements UserRecipeOperationDAO {
         }
     }
 
-    @Transactional
     @Override
     public UserRecipeOperation findUserRecipeOperationByUserId(int currentUserId) {
         if (currentUserId <= 0) {
@@ -109,7 +104,6 @@ public class UserRecipeOperationDAOImpl implements UserRecipeOperationDAO {
         }
     }
 
-    @Transactional
     @Override
     public UserRecipeOperation findUserRecipeOperationByRecipeId(int recipeId) {
         if (recipeId <= 0) {

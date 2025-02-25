@@ -30,6 +30,7 @@ public class Recipe {
     @NotNull(message = "Поле \"калорийность\" не заполнено")
     private float caloricValue;
 
+    /*впоследствии переделать в List<String>*/
     @Column(name = "ingredients", nullable = false)
     @NotEmpty(message = "Поле \"ингредиенты\" не заполнено")
     private String ingredients;
@@ -38,7 +39,7 @@ public class Recipe {
     @NotEmpty(message = "Поле \"описание\" не заполнено")
     private String description;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(name = "recipe_author",
             // внешний ключ, который указывает на текущую таблицу (первый столбец)
             joinColumns = @JoinColumn(name = "recipe_id"),
@@ -123,12 +124,12 @@ public class Recipe {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Recipe recipe = (Recipe) o;
-        return id == recipe.id && Float.compare(caloricValue, recipe.caloricValue) == 0 && Objects.equals(name, recipe.name) && mealCategory == recipe.mealCategory && Objects.equals(ingredients, recipe.ingredients) && Objects.equals(description, recipe.description) && Objects.equals(authorSet, recipe.authorSet) && Objects.equals(recipeOperations, recipe.recipeOperations);
+        return id == recipe.id && Float.compare(caloricValue, recipe.caloricValue) == 0 && Objects.equals(name, recipe.name) && mealCategory == recipe.mealCategory && Objects.equals(ingredients, recipe.ingredients) && Objects.equals(description, recipe.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, mealCategory, caloricValue, ingredients, description, authorSet, recipeOperations);
+        return Objects.hash(id, name, mealCategory, caloricValue, ingredients, description);
     }
 
     @Override

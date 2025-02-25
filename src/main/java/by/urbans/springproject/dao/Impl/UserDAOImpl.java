@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+// спринг security!
 @Repository
 public class UserDAOImpl implements UserDAO {
 

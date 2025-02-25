@@ -9,14 +9,14 @@ import java.util.Set;
 
 public interface RecipeDAO {
 
-    Recipe getRecipe(int recipeId);
+    Recipe getRecipe(int recipeId) throws DAOException;
 
-    Set<Recipe> getAllRecipes();
+    List<Recipe> getAllRecipes() throws DAOException;
 
-    boolean createOrUpdateRecipe(Recipe recipe, User currentUser);
+    boolean createOrUpdateRecipe(Recipe recipe, User currentUser) throws DAOException;
 
-    boolean deleteRecipe(int recipeId, User currentUser);
+    boolean deleteRecipe(int recipeId, User currentUser) throws DAOException;
 
-    List<Recipe> getRecipesByCategory(MealCategory category);
+    List<Recipe> getRecipesByCategory(MealCategory category) throws DAOException;
 
 }

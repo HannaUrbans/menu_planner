@@ -2,6 +2,7 @@ package by.urbans.springproject.bean;
 
 import java.util.Objects;
 
+// возможно, будет переделан со спринг security?
 public class Auth {
     private String login;
     private String password;
@@ -28,6 +29,27 @@ public class Auth {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Auth auth = (Auth) o;
+        return Objects.equals(login, auth.login) && Objects.equals(password, auth.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(login, password);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "{" +
+               "login='" + login + '\'' +
+               ", password='" + password + '\'' +
+               '}';
     }
 
 }

@@ -29,7 +29,7 @@ public class UserRecipeOperationServiceImpl implements UserRecipeOperationServic
     @Transactional
     @Override
     public UserRecipeOperation getUserRecipeOperationById(int userRecipeOperationId) {
-        if (userRecipeOperationId <= 0){
+        if (userRecipeOperationId <= 0) {
             return null;
         }
 
@@ -39,7 +39,7 @@ public class UserRecipeOperationServiceImpl implements UserRecipeOperationServic
     @Transactional
     @Override
     public boolean createUserRecipeOperation(UserRecipeOperation userRecipeOperation) {
-        if (userRecipeOperation == null){
+        if (userRecipeOperation == null) {
             return false;
         }
 
@@ -49,7 +49,7 @@ public class UserRecipeOperationServiceImpl implements UserRecipeOperationServic
     @Transactional
     @Override
     public boolean deleteUserRecipeOperation(int userRecipeOperationId) {
-        if (userRecipeOperationId <= 0){
+        if (userRecipeOperationId <= 0) {
             return false;
         }
 
@@ -59,7 +59,7 @@ public class UserRecipeOperationServiceImpl implements UserRecipeOperationServic
     @Transactional
     @Override
     public UserRecipeOperation findUserRecipeOperationByUserId(int currentUserId) {
-        if (currentUserId <= 0){
+        if (currentUserId <= 0) {
             return null;
         }
 
@@ -69,7 +69,7 @@ public class UserRecipeOperationServiceImpl implements UserRecipeOperationServic
     @Transactional
     @Override
     public UserRecipeOperation findUserRecipeOperationByRecipeId(int recipeId) {
-        if (recipeId <= 0){
+        if (recipeId <= 0) {
             return null;
         }
 

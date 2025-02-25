@@ -1,5 +1,6 @@
 package by.urbans.springproject.enums;
 
+// пока не задействовано
 public enum ProductAllergen {
     MILK("молоко"),
     SOYBEANS("соя"),
@@ -12,7 +13,7 @@ public enum ProductAllergen {
 
     private final String description;
 
-    ProductAllergen(String description){
+    ProductAllergen(String description) {
         this.description = description;
     }
 

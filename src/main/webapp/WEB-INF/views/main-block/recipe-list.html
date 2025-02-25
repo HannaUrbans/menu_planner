@@ -31,7 +31,7 @@
                 <div th:text="${recipe.description}"></div>
                 <h3>Автор:</h3>
                 <div th:each="author : ${recipe.authorSet}">
-                    <div th:text="${author}"></div>
+                    <div th:text="${author.login}"></div>
                 </div>
             </div>
         </div>

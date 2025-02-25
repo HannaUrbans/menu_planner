@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.Objects;
 
+// возможно, будет переделан со спринг security?
 @Entity
 @Table(name = "client_details")
 public class Client extends User {
@@ -50,7 +51,7 @@ public class Client extends User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;  // Сравниваем с родительским классом
+        if (!super.equals(o)) return false;
         Client client = (Client) o;
         return dailyTargetCalories == client.dailyTargetCalories &&
                Objects.equals(productAllergenList, client.productAllergenList);
@@ -58,12 +59,12 @@ public class Client extends User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), productAllergenList, dailyTargetCalories); // Включаем хэш-код родительского класса
+        return Objects.hash(super.hashCode(), productAllergenList, dailyTargetCalories);
     }
 
     @Override
     public String toString() {
-        return super.toString() + "{" +  // Добавляем строковое представление родительского класса
+        return super.toString() + "{" +
                "productAllergenList=" + productAllergenList +
                ", dailyTargetCalories=" + dailyTargetCalories +
                '}';

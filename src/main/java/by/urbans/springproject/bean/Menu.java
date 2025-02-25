@@ -1,7 +1,5 @@
 package by.urbans.springproject.bean;
 
-import jakarta.persistence.Entity;
-
 import java.util.Objects;
 import java.util.Set;
 

@@ -8,6 +8,7 @@ import by.urbans.springproject.enums.MealCategory;
 import by.urbans.springproject.service.RecipeService;
 import by.urbans.springproject.service.UserRecipeOperationService;
 import by.urbans.springproject.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +16,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @SessionAttributes("user")
@@ -53,8 +54,9 @@ public class BaseController {
     }
 
     @GetMapping("/logout")
-    public String logout() {
-        return "redirect:/goToMainPage";
+    public String logout(SessionStatus sessionStatus) {
+        sessionStatus.setComplete();
+        return "redirect:/goToAuthPage";
     }
 
     @GetMapping("/showRecipesByCategory")
@@ -74,12 +76,13 @@ public class BaseController {
         return "auth-form";
     }
 
+    // обновляем пользователя явно через сессию, а не через модель
     @PostMapping("/doAuth")
-    public String doAuth(@ModelAttribute("auth") Auth auth, Model model) {
+    public String doAuth(@ModelAttribute("auth") Auth auth, HttpSession session) {
         User authUser = userService.doAuth(auth);
 
         if (authUser != null) {
-            model.addAttribute("user", authUser);
+            session.setAttribute("user", authUser);
             return "redirect:/goToProfilePage";
         } else {
             return "redirect:/goToStubPage";
@@ -132,7 +135,7 @@ public class BaseController {
 
     @GetMapping("/showAllRecipes")
     public String showAllRecipes(Model model) {
-        Set<Recipe> recipes = recipeService.getAllRecipes();
+        List<Recipe> recipes = recipeService.getAllRecipes();
         model.addAttribute("recipes", recipes);
         model.addAttribute("content", "main-block/recipe-list");
         return "layout/layout";

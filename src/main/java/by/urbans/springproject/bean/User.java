@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Objects;
 
+// возможно, будет переделан со спринг security?
 @Entity
 @Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "login")})
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -68,19 +69,6 @@ public class User implements AuthorizedUser {
         this.userRole = userRole;
     }
 
-    // методы для паролей
-    public String getPassword() {
-        return null;
-    }
-
-    public void setPassword(String password) {
-        this.hashedPassword = new BCryptPasswordEncoder().encode(password);
-    }
-
-    public String getHashedPassword() {
-        return hashedPassword;
-    }
-
     public int getId() {
         return id;
     }
@@ -96,10 +84,6 @@ public class User implements AuthorizedUser {
 
     public void setLogin(String login) {
         this.login = login;
-    }
-
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
     }
 
     @Override
@@ -119,19 +103,37 @@ public class User implements AuthorizedUser {
         this.userRole = userRole;
     }
 
+    // методы для паролей
+    public void setPassword(String password) {
+        if (!password.startsWith("$2a$")) {
+            this.hashedPassword = encodePassword(password);
+        } else {
+            this.hashedPassword = password;
+        }
+    }
+
+    private String encodePassword(String password) {
+        return new BCryptPasswordEncoder().encode(password);
+    }
+
+    public String getHashedPassword() {
+        return hashedPassword;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id && Objects.equals(login, user.login) && Objects.equals(password, user.password) && Objects.equals(hashedPassword, user.hashedPassword) && Objects.equals(phone, user.phone) && Objects.equals(userRole, user.userRole);
+        return id == user.id && Objects.equals(login, user.login) && Objects.equals(hashedPassword, user.hashedPassword) && Objects.equals(phone, user.phone) && Objects.equals(userRole, user.userRole);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, password, hashedPassword, phone, userRole);
+        return Objects.hash(id, login, hashedPassword, phone, userRole);
     }
 
+    // выводится в авторах рецепта, но лучше взять user.login, надо переделать!
     @Override
     public String toString() {
         return login;
