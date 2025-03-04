@@ -103,6 +103,10 @@ public class User implements AuthorizedUser {
         this.userRole = userRole;
     }
 
+    public String getPassword() {
+        return password;
+    }
+    
     // методы для паролей
     public void setPassword(String password) {
         if (!password.startsWith("$2a$")) {
